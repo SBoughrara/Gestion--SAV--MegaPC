@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  user_name  String
+  email      String    @unique
+  password   String
+  Client     Client?   @relation(fields: [clientId], references: [id])
+  clientId   Int?
+  Employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId Int?
+}
+
+model Client {
+  id         Int       @id @default(autoincrement())
+  first_name String
+  last_name  String
+  email      String    @unique
+  photo      String    @db.LongText
+  adresse    String
+  numero     String    @unique
+  Ticket     Ticket[]
+  Facture    Facture[]
+  User       User[]
+}
+
+model Employee {
+  id         Int    @id @default(autoincrement())
+  first_name String
+  last_name  String
+  adresse    String
+  numero     String @unique
+  photo      String @db.LongText
+  email      String @unique
+  role       Role   @default(technicien)
+  User       User[]
+}
+
+model Ticket {
+  id          Int       @id @default(autoincrement())
+  modele      String?
+  num_serie   String?
+  date        DateTime  @default(now())
+  garantie    garantie?
+  statut      statut?
+  type        String?
+  commentaire String?
+  Client      Client?   @relation(fields: [clientId], references: [id])
+  clientId    Int?
+  Rapport     Rapport[]
+}
+
+model Facture {
+  id       Int      @id @default(autoincrement())
+  date     DateTime @default(now())
+  statut   StatutP?
+  montant  Float?
+  Client   Client?  @relation(fields: [clientId], references: [id])
+  clientId Int?
+}
+
+model Rapport {
+  id       Int      @id @default(autoincrement())
+  date     DateTime @default(now())
+  contenu  String?
+  Ticket   Ticket?  @relation(fields: [ticketId], references: [id])
+  ticketId Int?
+}
+
+enum Role {
+  technicien
+  admin
+  responsable
+}
+
+enum StatutP {
+  check
+  espece
+  carte
+}
+
+enum garantie {
+  valider
+  non_valider
+}
+
+enum statut {
+  ok
+  def
+}
