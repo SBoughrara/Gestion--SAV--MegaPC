@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFactureDto } from './dto/create-facture.dto';
 import { UpdateFactureDto } from './dto/update-facture.dto';
+import { PrismaService } from 'nestjs-prisma';
+import { CreateEmployeeDto } from 'src/employees/dto/create-employee.dto';
 
 @Injectable()
 export class FacturesService {
+  constructor(private prisma: PrismaService) {}
   create(createFactureDto: CreateFactureDto) {
-    return 'This action adds a new facture';
+    return this.prisma.facture.create({ data: createFactureDto });
   }
 
   findAll() {
-    return `This action returns all factures`;
+    return this.prisma.facture.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} facture`;
+    return this.prisma.facture.findUnique({ where: { id } });
   }
 
   update(id: number, updateFactureDto: UpdateFactureDto) {
-    return `This action updates a #${id} facture`;
+    return this.prisma.facture.update({
+      where: { id },
+      data: updateFactureDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} facture`;
+    return this.prisma.facture.delete({ where: { id } });
   }
 }

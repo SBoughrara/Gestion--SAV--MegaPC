@@ -1,26 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRapportDto } from './dto/create-rapport.dto';
 import { UpdateRapportDto } from './dto/update-rapport.dto';
+import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
 export class RapportsService {
+  constructor(private prisma: PrismaService) {}
   create(createRapportDto: CreateRapportDto) {
-    return 'This action adds a new rapport';
+    return this.prisma.rapport.create({ data: createRapportDto });
   }
 
   findAll() {
-    return `This action returns all rapports`;
+    return this.prisma.rapport.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} rapport`;
+    return this.prisma.rapport.findUnique({ where: { id } });
   }
 
   update(id: number, updateRapportDto: UpdateRapportDto) {
-    return `This action updates a #${id} rapport`;
+    return this.prisma.rapport.update({
+      where: { id },
+      data: updateRapportDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} rapport`;
+    return this.prisma.rapport.delete({ where: { id } });
   }
 }
