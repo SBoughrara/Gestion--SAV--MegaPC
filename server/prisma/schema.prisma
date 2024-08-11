@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id         Int       @id @default(autoincrement())
-  user_name  String
+  user_name  String    @unique
   email      String    @unique
   password   String
   Client     Client?   @relation(fields: [clientId], references: [id])
@@ -75,13 +75,13 @@ model Rapport {
 }
 
 enum Role {
-  technicien
   admin
   responsable
+  technicien
 }
 
 enum StatutP {
-  check
+  cheque
   espece
   carte
 }

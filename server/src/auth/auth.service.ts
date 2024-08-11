@@ -6,7 +6,6 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'nestjs-prisma';
 
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -14,12 +13,17 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async login(Dto: CreateAuthDto) {
-    const user = await this.prisma.user.findUnique({
-      where: { email: Dto.email },
-      include: { Employee:true, Client: true },
-    }); 
+    const user = await this.prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: Dto.email },
+          { user_name: Dto.user_name }
+        ]
+      },
+      include: { Employee: true, Client: true },
+    });
     if (!user) {
-      throw new HttpException('invalid email', HttpStatus.BAD_REQUEST);
+      throw new HttpException('invalid email or user name', HttpStatus.BAD_REQUEST);
     }
     const VPass = await bcrypt.compare(Dto.password, user.password);
     if (!VPass) {

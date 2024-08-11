@@ -6,6 +6,9 @@ export class CreateAuthDto {
     @IsString()
     password :string;
     @ApiProperty()
+    @IsString()
+    user_name :string;
+    @ApiProperty()
     @IsEmail()
     email :string;
-}
+}        
