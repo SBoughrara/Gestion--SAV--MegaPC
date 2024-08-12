@@ -92,7 +92,7 @@ async function main() {
   // Create Factures
   const facture1 = await prisma.facture.create({
     data: {
-      statut: 'cheque',
+      statut: 'espece',
       montant: 100.50,
       Client: { connect: { id: client1.id } },
     },
