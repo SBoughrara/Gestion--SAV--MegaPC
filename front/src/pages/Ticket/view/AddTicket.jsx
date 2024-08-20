@@ -35,6 +35,7 @@ export default function AddTicket() {
       data.type == "" ||
       data.statut == ""
     ) {
+      e.preventDefault();
       alert("saisir les donnee");
     } else {
       e.preventDefault();
