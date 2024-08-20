@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddEmployee() {
   const [data, setData] = useState({
@@ -26,6 +27,8 @@ export default function AddEmployee() {
       data.numero == ""
     ) {
       alert("saisir les donnee");
+      e.preventDefault();
+
     } else {
       e.preventDefault();
       axios({
@@ -35,12 +38,17 @@ export default function AddEmployee() {
       })
         .then(function (response) {
           console.log(response);
+          navigate(-1);
+
         })
         .catch(function (error) {
           console.log(error);
+          navigate(-1);
+
         });
     }
   }
+  const navigate = useNavigate();
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -97,6 +105,7 @@ export default function AddEmployee() {
           />
         </div>
         <Button
+        style={{backgroundColor:"#b80000"}}
                   type="submit"
                   onClick={handleSubmit}
                    variant="contained">Envoyer</Button>

@@ -1,4 +1,10 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { PrismaClient } from '@prisma/client';
@@ -14,24 +20,20 @@ export class AuthService {
   ) {}
   async login(Dto: CreateAuthDto) {
     const user = await this.prisma.user.findFirst({
-      where: {
-        OR: [
-          { email: Dto.email },
-          { user_name: Dto.user_name }
-        ]
-      },
-      include: { Employee: true, Client: true },
+      where: { email: Dto.email },
     });
     if (!user) {
-      throw new HttpException('invalid email or user name', HttpStatus.BAD_REQUEST);
+      throw new NotFoundException('invalid email or user name');
     }
     const VPass = await bcrypt.compare(Dto.password, user.password);
     if (!VPass) {
-      throw new HttpException('invalid passwod', HttpStatus.BAD_GATEWAY);
+      throw new UnauthorizedException('invalid passwod');
     }
     const { password, ...Urest } = user;
-    const token = await this.jwtService.signAsync(Urest);
-    return token;
+    // const token = await this.jwtService.signAsync(Urest);
+    return {
+      accessToken: this.jwtService.signAsync(Urest),
+    };
   }
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';

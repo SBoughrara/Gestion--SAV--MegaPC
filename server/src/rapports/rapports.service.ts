@@ -11,7 +11,7 @@ export class RapportsService {
   }
 
   findAll() {
-    return this.prisma.rapport.findMany();
+    return this.prisma.rapport.findMany({include:{Ticket:{include:{Client:true}}}});
   }
 
   findOne(id: number) {
