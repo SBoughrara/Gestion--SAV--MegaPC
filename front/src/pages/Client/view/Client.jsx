@@ -36,7 +36,6 @@ function Client() {
       field: "first_name",
       headerName: "First name",
       width: 150,
-      
     },
     {
       field: "last_name",
@@ -76,7 +75,9 @@ function Client() {
       <div className="d-flex justify-content-between pb-4">
         <h2 className="p-3">List des Clients</h2>
         <Link to={"add"}>
-          <Button variant="contained" style={{ backgroundColor: "#8B0000" }} >Ajouter un Client</Button>
+          <Button variant="contained" style={{ backgroundColor: "#8B0000" }}>
+            Ajouter un Client
+          </Button>
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>

@@ -39,7 +39,7 @@ export default function AddRapport() {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <h2 className="pb-4">Ajouter un Client</h2>
+      <h2 className="pb-4">Ajouter un rapport</h2>
       <form className="border p-4 d-flex flex-column justify-content-center w-50">
         <div className="pb-4">
           <TextField

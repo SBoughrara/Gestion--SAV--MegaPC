@@ -26,8 +26,16 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const salt = await bcrypt.genSalt();
+
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hashSync(updateUserDto.password, salt);
+    }
+    return this.prisma.user.update({
+      where: { id },
+      data: updateUserDto,
+    });
   }
 
   remove(id: number) {

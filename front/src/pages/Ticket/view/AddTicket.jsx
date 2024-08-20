@@ -20,7 +20,7 @@ export default function AddTicket() {
     garantie: "",
     clientId: 0,
   });
- const navigate=useNavigate();
+  const navigate = useNavigate();
   function handlechange(e) {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -37,6 +37,7 @@ export default function AddTicket() {
     ) {
       e.preventDefault();
       alert("saisir les donnee");
+      e.preventDefault();
     } else {
       e.preventDefault();
       axios({
@@ -51,14 +52,13 @@ export default function AddTicket() {
         .catch(function (error) {
           console.log(error);
           navigate(-1);
-
         });
     }
   }
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <h2 className="pb-4">Ajouter un Client</h2>
+      <h2 className="pb-4">Ajouter un Ticket</h2>
       <form className="border p-4 d-flex flex-column justify-content-center w-50">
         <div className="pb-4">
           <TextField
@@ -150,7 +150,9 @@ export default function AddTicket() {
             variant="standard"
           />
         </div>
-        <Button type="submit" onClick={handleSubmit} variant="contained">
+        <Button
+        style={{backgroundColor:"#8b0000"}}
+        type="submit" onClick={handleSubmit} variant="contained">
           Envoyer
         </Button>
       </form>

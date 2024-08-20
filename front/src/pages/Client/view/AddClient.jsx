@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddClient() {
   const [data, setData] = useState({
@@ -16,6 +17,8 @@ export default function AddClient() {
     setData({ ...data, [name]: value });
     console.log(data);
   }
+  const navigate = useNavigate();
+
   function handleSubmit(e) {
     if (
       data.first_name == "" ||
@@ -24,15 +27,22 @@ export default function AddClient() {
       data.adresse == "" ||
       data.numero == ""
     ) {
+      e.preventDefault();
       alert("saisir les donnee");
     } else {
       e.preventDefault();
-      axios({method:"post",  url: "http://localhost:3000/clients",data:data})
+      axios({
+        method: "post",
+        url: "http://localhost:3000/clients",
+        data: data,
+      })
         .then(function (response) {
           console.log(response);
+          navigate(-1);
         })
         .catch(function (error) {
           console.log(error);
+          navigate(-1);
         });
     }
   }
@@ -95,6 +105,7 @@ export default function AddClient() {
           type="submit"
           onClick={handleSubmit}
           variant="contained"
+          style={{ backgroundColor: "#b80000" }}
         >
           Envoyer
         </Button>

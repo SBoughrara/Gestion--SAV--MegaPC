@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignIn from "../pages/SignIn/SignIn";
 import MainApp from "../apps/MainApp";
@@ -21,11 +21,28 @@ import Rapport from "../pages/Rapport/view/Rapport";
 import AddRapport from "../pages/Rapport/view/AddRapport";
 import FacturePage from "../pages/Facture/FacturePage";
 import Facture from "../pages/Facture/view/Facture";
-import AddFacture from "../pages/Facture/view/AddFacture";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import axios from "axios";
 
 export default function Router() {
   const [user, setuser] = useState(true);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+axios({method:"get",
+  url: "http://localhost:3000/auth/me"
+}).then(function (response) {
+  console.log(response);
+  // navigate(-1);
+})
+.catch(function (error) {
+  console.log(error);
+  // navigate(-1);
+});
+    } else {
+      setLoading(false);
+    }  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -54,7 +71,6 @@ export default function Router() {
             </Route>
             <Route path="/facture" element={<FacturePage />}>\
             <Route index element={<Facture/>}/>
-            <Route path="add" element={<AddFacture/>}/>
             </Route>
 
           </Route>

@@ -40,7 +40,7 @@ function Rapport() {
       headerName: "nom et prenom",
       width: 150,
       valueGetter: (value, row) => {
-        return row.Ticket.Client.first_name+" "+row.Ticket.Client.last_name
+        return row.Ticket.Client.first_name + " " + row.Ticket.Client.last_name;
         // return value.row.clients?.first_name;
       },
     },
@@ -49,7 +49,7 @@ function Rapport() {
       headerName: "num du ticket",
       width: 150,
       valueGetter: (value, row) => {
-        return row.Ticket.num_serie
+        return row.Ticket.num_serie;
         // return value.row.clients?.first_name;
       },
     },
@@ -58,7 +58,7 @@ function Rapport() {
       headerName: "commentaire",
       width: 150,
       valueGetter: (value, row) => {
-        return row.Ticket.commentaire
+        return row.Ticket.commentaire;
         // return value.row.clients?.first_name;
       },
     },
@@ -67,7 +67,7 @@ function Rapport() {
       headerName: "type",
       width: 200,
       valueGetter: (value, row) => {
-        return row.Ticket.type
+        return row.Ticket.type;
         // return value.row.clients?.first_name;
       },
     },
@@ -80,7 +80,7 @@ function Rapport() {
       field: "contenu",
       headerName: "contenu",
       width: 160,
-    }
+    },
   ];
   console.log(dataa);
   return (
@@ -88,15 +88,15 @@ function Rapport() {
       <div className="d-flex justify-content-between pb-4">
         <h2 className="p-3">List des Rapports</h2>
         <Link to={"add"}>
-          <Button>Ajouter un Rapport</Button>
+          <Button 
+          variant="contained"
+          style={{ backgroundColor: "#b80000" }}>
+            Ajouter un Rapport
+          </Button>
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid
-          columns={columns}
-          rows={dataa}
-
-        />
+        <DataGrid columns={columns} rows={dataa} />
       </div>
     </div>
   );
