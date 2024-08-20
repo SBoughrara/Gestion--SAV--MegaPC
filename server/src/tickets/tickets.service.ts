@@ -11,7 +11,7 @@ export class TicketsService {
   }
 
   findAll() {
-    return this.prisma.ticket.findMany();
+    return this.prisma.ticket.findMany({include:{Client:true}});
   }
 
   findOne(id: number) {
