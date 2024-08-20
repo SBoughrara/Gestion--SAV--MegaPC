@@ -13,11 +13,12 @@ async function bootstrap() {
       { type: 'apiKey', name: 'Authorization', in: 'header' },
       'apiKey',
     )
-    .addTag('Megapc')
+    .addTag('megapc')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   app.useStaticAssets('upload', { prefix: '/upload' });
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
