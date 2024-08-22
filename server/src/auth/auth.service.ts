@@ -19,7 +19,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async login(Dto: CreateAuthDto) {
-    const user = await this.prisma.user.findFirst({
+    const user = await this.prisma.user.findUnique({
       where: { email: Dto.email },
     });
     if (!user) {
@@ -30,10 +30,10 @@ export class AuthService {
       throw new UnauthorizedException('invalid passwod');
     }
     const { password, ...Urest } = user;
+
     // const token = await this.jwtService.signAsync(Urest);
-    return {
-      accessToken: this.jwtService.signAsync(Urest),
-    };
+
+    return { accessToken: this.jwtService.sign({ userId: user.id }) };
   }
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';

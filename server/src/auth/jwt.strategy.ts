@@ -9,17 +9,19 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private usersService: UsersService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
       secretOrKey: "megapc",
     });
   }
 
+
   async validate(payload: { userId: number }) {
     const user = await this.usersService.findOne(payload.userId);
-
     if (!user) {
       throw new UnauthorizedException();
     }
-
-    return user;
+    console.log('JWT payload:', user); // Debugging line
+const {password,...userr}=user
+    return userr;
   }
 }
