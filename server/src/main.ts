@@ -11,12 +11,10 @@ async function bootstrap() {
     .setVersion('0.1')
     .addBearerAuth()
     .build();
-
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  app.enableCors();
   app.useStaticAssets('upload', { prefix: '/upload' });
-
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
