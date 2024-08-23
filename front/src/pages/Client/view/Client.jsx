@@ -24,6 +24,7 @@ function Client() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/clients/${data}`);
   };
+  
 
   const columns = [
     {

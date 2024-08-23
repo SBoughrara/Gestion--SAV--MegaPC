@@ -54,6 +54,7 @@ model Ticket {
   commentaire String?
   Client      Client?   @relation(fields: [clientId], references: [id])
   clientId    Int?
+  status      Status?   @default(reception)
   Rapport     Rapport[]
 }
 
@@ -91,8 +92,15 @@ enum garantie {
   non_valider
 }
 
+enum Status {
+  reception
+  encours
+  terminer
+  annuler
+  fournisseur
+}
+
 enum statut {
   ok
   def
 }
-

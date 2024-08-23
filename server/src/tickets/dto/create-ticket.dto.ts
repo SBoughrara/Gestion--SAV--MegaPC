@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { garantie, statut } from '@prisma/client';
+import { garantie, statut,Status } from '@prisma/client';
 
 export class CreateTicketDto {
   @ApiProperty()
@@ -16,4 +16,6 @@ export class CreateTicketDto {
   commentaire: string;
   @ApiProperty()
   clientId: number;
+  @ApiProperty()
+  status:Status
 }
