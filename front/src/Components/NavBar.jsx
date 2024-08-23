@@ -26,6 +26,8 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Avatar } from "@mui/material";
+import AccountMenu from "./MenuAvatar";
 
 const drawerWidth = 240;
 
@@ -109,7 +111,12 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: "flex" }}>
       {/* <CssBaseline /> */}
-      <AppBar style={{ backgroundColor: "#8B0000" }} position="fixed" open={open}>
+      <AppBar
+        style={{ backgroundColor: "#8B0000" }}
+        position="fixed"
+        open={open}
+        className="d-flex flex-row justify-content-between"
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -127,6 +134,8 @@ export default function MiniDrawer() {
             MegaPC
           </Typography>
         </Toolbar>
+
+        <AccountMenu />
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>

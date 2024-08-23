@@ -9,7 +9,9 @@ import { Avatar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
@@ -19,6 +21,10 @@ function CustomToolbar() {
 }
 
 function Client() {
+  const handledelete = (data) => {
+    axios.delete(`http://localhost:3000/clients/${data}`);
+  };
+
   const columns = [
     {
       field: "photo",
@@ -51,6 +57,25 @@ function Client() {
       field: "numero",
       headerName: "numero",
       width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <div className="h-100 w-100 d-flex justify-content-around align-items-center">
+            <DeleteIcon
+              onClick={() => {
+                handledelete(params.id);
+                console.log(params);
+              }}
+            />
+          </div>
+        );
+      },
     },
   ];
 

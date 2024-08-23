@@ -9,13 +9,13 @@ import { UsersModule } from 'src/users/users.module';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: "megapc",
+      secret: 'megapc',
       signOptions: { expiresIn: '30d' }, // e.g. 30s, 7d, 24h
     }),
-    UsersModule
+    UsersModule,
   ],
-
+  exports: [AuthService],
   controllers: [AuthController],
-  providers: [AuthService,JwtStrategy],
+  providers: [AuthService, JwtStrategy],
 })
 export class AuthModule {}

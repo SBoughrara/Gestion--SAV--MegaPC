@@ -23,56 +23,67 @@ import FacturePage from "../pages/Facture/FacturePage";
 import Facture from "../pages/Facture/view/Facture";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import axios from "axios";
+import Profile from "../pages/Profile";
 
 export default function Router() {
-  const [user, setuser] = useState(true);
+  const [user, setuser] = useState(false);
   const [loading, setLoading] = useState(true);
+  var token=""
   useEffect(() => {
     if (localStorage.getItem("token")) {
-axios({method:"get",
-  url: "http://localhost:3000/auth/me"
-}).then(function (response) {
-  console.log(response);
-  // navigate(-1);
-})
-.catch(function (error) {
-  console.log(error);
-  // navigate(-1);
-});
+      token = localStorage.getItem("token");
+
+      axios.get( "http://localhost:3000/auth/me" ,{headers:{Authorization:"Bearer "+token}})
+        .then(function (response) {
+          console.log(response);
+          setuser(true);
+        })
+        .catch(function (error) {
+          console.log("rahouu");
+          // navigate(-1);
+        });
     } else {
       setLoading(false);
-    }  }, []);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         {user ? (
           <Route path="/" element={<MainApp />}>
-            <Route index element={<Dashboard/>} />
-            <Route path="/user" element={<UserPage />}>\
-            <Route index element={<User/>}/>
-            <Route path="add" element={<AddUser/>}/>
+            <Route index element={<Dashboard />} />
+            <Route path="/user" element={<UserPage />}>
+              \
+              <Route index element={<User />} />
+              <Route path="add" element={<AddUser />} />
             </Route>
-            <Route path="/client" element={<ClientPage />}>\
-            <Route index element={<Client/>}/>
-            <Route path="add" element={<AddClient/>}/>
+            <Route path="/client" element={<ClientPage />}>
+              \
+              <Route index element={<Client />} />
+              <Route path="add" element={<AddClient />} />
             </Route>
-            <Route path="/employee" element={<EmployeePage />}>\
-            <Route index element={<Employee/>}/>
-            <Route path="add" element={<AddEmployee/>}/>
+            <Route path="/employee" element={<EmployeePage />}>
+              \
+              <Route index element={<Employee />} />
+              <Route path="add" element={<AddEmployee />} />
             </Route>
-            <Route path="/ticket" element={<TicketPage />}>\
-            <Route index element={<Ticket/>}/>
-            <Route path="add" element={<AddTicket/>}/>
+            <Route path="/ticket" element={<TicketPage />}>
+              \
+              <Route index element={<Ticket />} />
+              <Route path="add" element={<AddTicket />} />
             </Route>
-            <Route path="/rapport" element={<RapportPage />}>\
-            <Route index element={<Rapport/>}/>
-            <Route path="add" element={<AddRapport/>}/>
+            <Route path="/rapport" element={<RapportPage />}>
+              \
+              <Route index element={<Rapport />} />
+              <Route path="add" element={<AddRapport />} />
             </Route>
-            <Route path="/facture" element={<FacturePage />}>\
-            <Route index element={<Facture/>}/>
+            <Route path="/facture" element={<FacturePage />}>
+              \
+              <Route index element={<Facture />} />
             </Route>
-
+            <Route path="/profile" element={<Profile/>}/>
+    
           </Route>
         ) : (
           <Route path="/" element={<AuthApp />}>
