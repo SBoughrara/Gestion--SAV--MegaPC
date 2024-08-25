@@ -38,7 +38,7 @@ export default function Profile() {
           setUser(response.data);
           console.log(user, "thisssssssssssssssss ");
           axios
-            .get(`http://localhost:3000/employees/${response.data.id}`)
+            .get(`http://localhost:3000/clients/${response.data.id}`)
             .then(function (response) {
               console.log(response);
               setemp(response.data);
@@ -58,6 +58,8 @@ export default function Profile() {
         });
     }
   }, []);
+
+  
   //   useEffect(() => {
   //     axios
   //     .get(`http://localhost:3000//employees/${user.id}`)
@@ -130,10 +132,10 @@ export default function Profile() {
                 </FormControl>
               </Stack>
               <Stack direction="row" spacing={10}>
-                <FormControl>
+                {/* <FormControl>
                   <FormLabel>Role</FormLabel>
                   <Typography size="sm">{emp.role} </Typography>
-                </FormControl>
+                </FormControl> */}
                 <FormControl sx={{ flexGrow: 1 }}>
                   <FormLabel>Email</FormLabel>
                   <Typography size="sm" sx={{ flexGrow: 1 }}>
@@ -144,12 +146,12 @@ export default function Profile() {
               <Stack direction="row" spacing={8}>
                 <FormControl>
                   <FormLabel>Adresse</FormLabel>
-                  <Typography size="sm">bacha,center</Typography>
+                  <Typography size="sm">{emp.adresse}</Typography>
                 </FormControl>
                 <FormControl sx={{ flexGrow: 1 }}>
                   <FormLabel>Numero</FormLabel>
                   <Typography size="sm" sx={{ flexGrow: 1 }}>
-                    2100300
+                  {emp.numero}
                   </Typography>
                 </FormControl>
               </Stack>
@@ -201,10 +203,10 @@ export default function Profile() {
                 </FormControl>
               </Stack>
             </Stack>
-            <FormControl>
+            {/* <FormControl>
               <FormLabel>Role</FormLabel>
               <Typography size="sm">{emp.role} </Typography>
-            </FormControl>
+            </FormControl> */}
             <FormControl sx={{ flexGrow: 1 }}>
               <FormLabel>Email</FormLabel>
               <Typography size="sm" sx={{ flexGrow: 1 }}>
@@ -227,8 +229,9 @@ export default function Profile() {
           <CardOverflow sx={{ borderTop: "1px solid", borderColor: "divider" }}>
             <CardActions sx={{ alignSelf: "flex-end", pt: 2 }}>
               <Link
+
                 className="text-reset text-decoration-none"
-                to={"/profile/editprofile"}
+                to={"edit"}
               >
                 <MdEdit size={25} variant="solid" />
               </Link>

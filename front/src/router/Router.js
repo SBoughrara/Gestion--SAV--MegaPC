@@ -23,7 +23,10 @@ import FacturePage from "../pages/Facture/FacturePage";
 import Facture from "../pages/Facture/view/Facture";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import axios from "axios";
-import Profile from "../pages/Profile";
+// import Profile from "../pages/Profile";
+import ProfilePage from "../pages/Profile/ProfilePage";
+import EditProfile from "../pages/Profile/view/Editprofile";
+import Profile from "../pages/Profile/view/Profile";
 
 export default function Router() {
   const [user, setuser] = useState(false);
@@ -82,8 +85,10 @@ export default function Router() {
               \
               <Route index element={<Facture />} />
             </Route>
-            <Route path="/profile" element={<Profile/>}/>
-    
+            <Route path="/profile" element={<ProfilePage />}>
+              <Route index element={<Profile/>} />
+            <Route path="edit" element={<EditProfile />} />
+            </Route>    
           </Route>
         ) : (
           <Route path="/" element={<AuthApp />}>
