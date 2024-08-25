@@ -63,7 +63,7 @@ function Ticket() {
       headerName: "nom client",
       width: 160,
       valueGetter: (value, row) => {
-        return(row.Client.first_name+" "+row.Client.last_name);
+        return(row?.Client?.first_name+" "+row?.Client?.last_name);
         // return value.row.clients?.first_name;
       }
     },

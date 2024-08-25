@@ -8,6 +8,8 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import { Avatar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function CustomToolbar() {
   return (
@@ -18,6 +20,9 @@ function CustomToolbar() {
 }
 
 function Employee() {
+  const handledelete = (data) => {
+    axios.delete(`http://localhost:3000/employees/${data}`);
+  };
 
   const columns = [
     {
@@ -56,6 +61,25 @@ function Employee() {
       field: "role",
       headerName: "role",
       width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <div className="h-100 w-100 d-flex justify-content-around align-items-center">
+            <DeleteIcon
+              onClick={() => {
+                handledelete(params.id);
+                console.log(params);
+              }}
+            />
+          </div>
+        );
+      },
     },
   ];
   const [dataa, setDataa] = React.useState();

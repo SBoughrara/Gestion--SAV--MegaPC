@@ -8,7 +8,8 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
@@ -18,6 +19,11 @@ function CustomToolbar() {
 }
 
 function Rapport() {
+  const handledelete = (data) => {
+    axios.delete(`http://localhost:3000/rapports/${data}`);
+  };
+
+
   const [dataa, setDataa] = React.useState();
   console.log(dataa, "thisssssssssss isssssssssssss rappppppppppppppporrrrrt");
   const get = async () => {
@@ -40,7 +46,7 @@ function Rapport() {
       headerName: "nom et prenom",
       width: 150,
       valueGetter: (value, row) => {
-        return row.Ticket.Client.first_name + " " + row.Ticket.Client.last_name;
+        return row?.Ticket?.Client?.first_name + " " + row?.Ticket?.Client?.last_name;
         // return value.row.clients?.first_name;
       },
     },
@@ -80,6 +86,25 @@ function Rapport() {
       field: "contenu",
       headerName: "contenu",
       width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <div className="h-100 w-100 d-flex justify-content-around align-items-center">
+            <DeleteIcon
+              onClick={() => {
+                handledelete(params.id);
+                console.log(params);
+              }}
+            />
+          </div>
+        );
+      },
     },
   ];
   console.log(dataa);

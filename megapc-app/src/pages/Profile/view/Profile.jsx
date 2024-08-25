@@ -58,6 +58,8 @@ export default function Profile() {
         });
     }
   }, []);
+
+  
   //   useEffect(() => {
   //     axios
   //     .get(`http://localhost:3000//employees/${user.id}`)
@@ -229,7 +231,7 @@ export default function Profile() {
               <Link
 
                 className="text-reset text-decoration-none"
-                to={"/profile/editprofile"}
+                to={"edit"}
               >
                 <MdEdit size={25} variant="solid" />
               </Link>

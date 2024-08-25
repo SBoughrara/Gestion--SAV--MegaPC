@@ -8,7 +8,8 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import { Avatar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
@@ -18,6 +19,9 @@ function CustomToolbar() {
 }
 
 function Ticket() {
+  const handledelete = (data) => {
+    axios.delete(`http://localhost:3000/tickets/${data}`);
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
@@ -63,9 +67,28 @@ function Ticket() {
       headerName: "nom client",
       width: 160,
       valueGetter: (value, row) => {
-        return(row.Client.first_name+" "+row.Client.last_name);
+        return(row?.Client?.first_name+" "+row?.Client?.last_name);
         // return value.row.clients?.first_name;
       }
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <div className="h-100 w-100 d-flex justify-content-around align-items-center">
+            <DeleteIcon
+              onClick={() => {
+                handledelete(params.id);
+                console.log(params);
+              }}
+            />
+          </div>
+        );
+      },
     },
   ];
   const [dataa, setDataa] = React.useState();

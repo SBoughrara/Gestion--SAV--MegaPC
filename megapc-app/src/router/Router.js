@@ -23,8 +23,10 @@ import SignUp from "../pages/SignIn/singup";
 // import Facture from "../pages/Facture/view/Facture";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import axios from "axios";
-import Profile from "../pages/Profile";
 import AddTicket from "../pages/Ticket/view/AddTicket";
+import Profile from "../pages/Profile/view/Profile";
+import ProfilePage from "../pages/Profile/ProfilePage";
+import Editprofile from "../pages/Profile/view/Editprofile";
 
 export default function Router() {
   const [user, setuser] = useState(false);
@@ -57,14 +59,16 @@ export default function Router() {
         {user ? (
           <Route path="/" element={<MainApp />}>
             <Route index element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<ProfilePage />}>
+              <Route index element={<Profile />} />
+            <Route path="edit" element={<Editprofile />} />
+            </Route>
             <Route path="/add" element={<AddTicket />} />
-
           </Route>
         ) : (
           <Route path="/" element={<AuthApp />}>
             <Route index element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />}/>
+            <Route path="/signup" element={<SignUp />} />
           </Route>
         )}
       </Routes>
