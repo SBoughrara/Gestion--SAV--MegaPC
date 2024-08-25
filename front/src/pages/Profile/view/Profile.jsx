@@ -38,7 +38,7 @@ export default function Profile() {
           setUser(response.data);
           console.log(user, "thisssssssssssssssss ");
           axios
-            .get(`http://localhost:3000/clients/${response.data.id}`)
+            .get(`http://localhost:3000/employees/${response.data.id}`)
             .then(function (response) {
               console.log(response);
               setemp(response.data);
