@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { GridToolbar } from "@mui/x-data-grid";
+
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
@@ -22,7 +24,6 @@ function User() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/users/${data}`);
   };
-
 
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
@@ -79,12 +80,18 @@ function User() {
       <div className="d-flex justify-content-between pb-4">
         <h2 className="p-3">List des Users</h2>
         <Link to={"add"}>
-          <Button style={{backgroundColor:"#B80000"}} variant="contained" >Ajouter un User</Button>
+          <Button style={{ backgroundColor: "#B80000" }} variant="contained">
+            Ajouter un User
+          </Button>
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid columns={columns}
-        rows={dataa}
+        <DataGrid
+          slots={{
+            toolbar: GridToolbar,
+          }}
+          columns={columns}
+          rows={dataa}
         />
       </div>
     </div>

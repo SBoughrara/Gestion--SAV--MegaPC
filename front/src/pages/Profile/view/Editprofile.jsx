@@ -87,10 +87,6 @@ const [data, setData] = React.useState({});
         console.log(response);
         navigate("/profile");
       })
-      .catch(function (error) {
-        console.log(error);
-        // navigate(-1);
-      });
 
 }
 
@@ -261,7 +257,6 @@ const [data, setData] = React.useState({});
             >
               <CardActions sx={{ alignSelf: "flex-end", pt: 2 }}>
                 <Button
-                  onClick={navigate(-1)}
                   size="sm"
                   variant="outlined"
                   color="neutral"

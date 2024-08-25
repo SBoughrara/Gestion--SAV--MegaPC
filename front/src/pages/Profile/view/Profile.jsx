@@ -59,24 +59,6 @@ export default function Profile() {
     }
   }, []);
 
-  
-  //   useEffect(() => {
-  //     axios
-  //     .get(`http://localhost:3000//employees/${user.id}`)
-  //     .then(function (response) {
-  //       console.log(response);
-  //       setemp(response.data);
-  //       console.log(
-  //         emp,
-  //         "hjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-  //       );
-  //     })
-  //     .catch(function (error) {
-  //       console.log("rahouu");
-  //       // navigate(-1);
-  //     });
-  //   }, [user.id]);
-
   return (
     <Box sx={{ flex: 1, width: "100%" }}>
       <Stack

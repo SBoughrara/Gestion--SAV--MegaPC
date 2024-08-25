@@ -11,11 +11,17 @@ export class RapportsService {
   }
 
   findAll() {
-    return this.prisma.rapport.findMany({include:{Ticket:{include:{Client:true}}}});
+    return this.prisma.rapport.findMany({
+      include: { Ticket: { include: { Client: true } } },
+    });
+
   }
 
   findOne(id: number) {
-    return this.prisma.rapport.findUnique({ where: { id } });
+    return this.prisma.rapport.findUnique({
+      where: { id },
+      include: { Ticket: { include: { Client: true } } },
+    });
   }
 
   update(id: number, updateRapportDto: UpdateRapportDto) {

@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {  GridToolbar } from '@mui/x-data-grid';
+
+
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
@@ -30,7 +33,6 @@ function Ticket() {
       field: "modele",
       headerName: "Modele",
       width: 150,
-      
     },
     {
       field: "num_serie",
@@ -67,9 +69,9 @@ function Ticket() {
       headerName: "nom client",
       width: 160,
       valueGetter: (value, row) => {
-        return(row?.Client?.first_name+" "+row?.Client?.last_name);
+        return row?.Client?.first_name + " " + row?.Client?.last_name;
         // return value.row.clients?.first_name;
-      }
+      },
     },
     {
       field: "action",
@@ -112,13 +114,18 @@ function Ticket() {
       <div className="d-flex justify-content-between pb-4">
         <h2 className="p-3">List des Tickets</h2>
         <Link to={"add"}>
-          <Button style={{backgroundColor:"#B80000"}} variant="contained">Ajouter un Ticket</Button>
+          <Button style={{ backgroundColor: "#B80000" }} variant="contained">
+            Ajouter un Ticket
+          </Button>
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>
         <DataGrid
-         columns={columns} 
-         rows={dataa}
+          columns={columns}
+          rows={dataa}
+          slots={{
+            toolbar: GridToolbar,
+          }}
         />
       </div>
     </div>

@@ -1,4 +1,7 @@
 import * as React from "react";
+
+import { GridToolbar } from '@mui/x-data-grid';
+
 import {
   DataGrid,
   GridToolbarContainer,
@@ -107,7 +110,13 @@ function Client() {
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid rows={dataa} columns={columns} />
+        <DataGrid rows={dataa} columns={columns}
+        
+        slots={{
+          toolbar: GridToolbar,
+        }}
+        
+        />
       </div>
     </div>
   );

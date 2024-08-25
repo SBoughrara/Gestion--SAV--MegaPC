@@ -229,7 +229,6 @@ export default function Profile() {
           <CardOverflow sx={{ borderTop: "1px solid", borderColor: "divider" }}>
             <CardActions sx={{ alignSelf: "flex-end", pt: 2 }}>
               <Link
-
                 className="text-reset text-decoration-none"
                 to={"edit"}
               >

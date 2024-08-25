@@ -4,6 +4,8 @@ import {
   GridToolbarContainer,
   GridToolbarExport,
 } from "@mui/x-data-grid";
+import { GridToolbar } from "@mui/x-data-grid";
+
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { Avatar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -102,13 +104,19 @@ function Employee() {
       <div className="d-flex justify-content-between pb-4">
         <h2 className="p-3">List des Employees</h2>
         <Link to={"add"}>
-          <Button
-           style={{backgroundColor:"#8b0000"}}
-           variant="contained">Ajouter un Employee</Button>
+          <Button style={{ backgroundColor: "#8b0000" }} variant="contained">
+            Ajouter un Employee
+          </Button>
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid rows={dataa} columns={columns} />
+        <DataGrid
+          slots={{
+            toolbar: GridToolbar,
+          }}
+          rows={dataa}
+          columns={columns}
+        />
       </div>
     </div>
   );

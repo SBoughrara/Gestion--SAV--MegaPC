@@ -10,6 +10,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {  GridToolbar } from '@mui/x-data-grid';
+import Viewone from "./Viewone";
+import { useState } from "react";
+
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
@@ -22,6 +27,10 @@ function Rapport() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/rapports/${data}`);
   };
+  const [show, setShow] = useState(false);
+  const [id, setid] = useState();
+
+  const handleShow = () => setShow(true);
 
 
   const [dataa, setDataa] = React.useState();
@@ -39,6 +48,8 @@ function Rapport() {
   React.useEffect(() => {
     get();
   }, []);
+
+  
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
     {
@@ -102,6 +113,12 @@ function Rapport() {
                 console.log(params);
               }}
             />
+            <RemoveRedEyeIcon
+              onClick={() => {
+                setid(params.id)
+                setShow(true)
+              }}
+            />
           </div>
         );
       },
@@ -121,8 +138,14 @@ function Rapport() {
         </Link>
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid columns={columns} rows={dataa} />
+        <DataGrid 
+        
+        slots={{
+          toolbar: GridToolbar,
+        }}
+        columns={columns} rows={dataa} />
       </div>
+      <Viewone id={id} show={show} setShow={setShow}/>
     </div>
   );
 }

@@ -261,7 +261,6 @@ const [data, setData] = React.useState({});
             >
               <CardActions sx={{ alignSelf: "flex-end", pt: 2 }}>
                 <Button
-                  onClick={navigate(-1)}
                   size="sm"
                   variant="outlined"
                   color="neutral"
