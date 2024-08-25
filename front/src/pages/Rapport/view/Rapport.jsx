@@ -110,6 +110,8 @@ function Rapport() {
             <DeleteIcon
               onClick={() => {
                 handledelete(params.id);
+    window.location.reload();
+
                 console.log(params);
               }}
             />

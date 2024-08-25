@@ -24,6 +24,8 @@ function CustomToolbar() {
 function Employee() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/employees/${data}`);
+    window.location.reload();
+
   };
 
   const columns = [

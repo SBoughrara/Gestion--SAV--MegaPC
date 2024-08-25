@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@mui/material";
-import axios from "axios";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function AddUser() {
@@ -8,6 +14,8 @@ export default function AddUser() {
     user_name: "",
     email: "",
     password: "12345",
+    employeeId: null,
+    clientId: null,
   });
   const navigate = useNavigate();
 
@@ -17,6 +25,9 @@ export default function AddUser() {
     console.log(data);
   }
   function handleSubmit(e) {
+    data.clientId = parseInt(data.clientId);
+    data.employeeId = parseInt(data.employeeId);
+
     if (data.email == "" || data.user_name == "") {
       alert("saisir les donnee");
       e.preventDefault();
@@ -62,7 +73,41 @@ export default function AddUser() {
             value={data.email}
           />
         </div>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">user ...</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            // value={data.statut}
+            label="user"
+            name="user"
+            // onChange={handlechange}
+          >
+            <MenuItem value={"ok"}>Client</MenuItem>
+            <MenuItem value={"def"}>Employee</MenuItem>
+          </Select>
 
+        </FormControl>
+        <div className="pb-4">
+            <TextField
+              name="clientId"
+              className="w-100"
+              label="clientId"
+              variant="standard"
+              onChange={handlechange}
+              value={data.clientId}
+            />
+          </div>
+          <div className="pb-4">
+            <TextField
+              name="employeeId"
+              className="w-100"
+              label="employeeId"
+              variant="standard"
+              onChange={handlechange}
+              value={data.employeeId}
+            />
+          </div>
         <Button
           style={{ backgroundColor: "#b80000" }}
           onClick={handleSubmit}

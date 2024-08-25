@@ -22,6 +22,8 @@ function CustomToolbar() {
 function Dashboard() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/clients/${data}`);
+    window.location.reload();
+
   };
 
   const columns = [
@@ -79,7 +81,6 @@ function Dashboard() {
             <DeleteIcon
               onClick={() => {
                 handledelete(params.id);
-                console.log(params);
               }}
             />
           </div>

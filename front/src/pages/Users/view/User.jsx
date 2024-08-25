@@ -23,6 +23,8 @@ function CustomToolbar() {
 function User() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/users/${data}`);
+    window.location.reload();
+
   };
 
   const columns = [

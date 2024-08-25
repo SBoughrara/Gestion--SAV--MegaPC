@@ -133,6 +133,7 @@ export default function AddTicket() {
               <MenuItem value={"non_valider"}>non_valider</MenuItem>
               <MenuItem value={"valider"}>valider</MenuItem>
             </Select>
+            <p className="text-danger">NB : Si garantie, La personne est obligée d’amener sa facture de garantie .            </p>
           </FormControl>
         </div>
         <div className="pb-4">
