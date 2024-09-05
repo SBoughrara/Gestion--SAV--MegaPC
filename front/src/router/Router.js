@@ -27,6 +27,7 @@ import axios from "axios";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import EditProfile from "../pages/Profile/view/Editprofile";
 import Profile from "../pages/Profile/view/Profile";
+import Editticket from "../pages/Ticket/view/Editticket";
 
 export default function Router() {
   const [user, setuser] = useState(false);
@@ -75,6 +76,8 @@ export default function Router() {
               \
               <Route index element={<Ticket />} />
               <Route path="add" element={<AddTicket />} />
+              <Route path="edit/:id" element={<Editticket />} />
+
             </Route>
             <Route path="/rapport" element={<RapportPage />}>
               \

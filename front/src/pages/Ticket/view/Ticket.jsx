@@ -4,14 +4,14 @@ import {
   GridToolbarContainer,
   GridToolbarExport,
 } from "@mui/x-data-grid";
-import { useDemoData } from "@mui/x-data-grid-generator";
+// import { useDemoData } from "@mui/x-data-grid-generator";
 import { Avatar, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {  GridToolbar } from '@mui/x-data-grid';
-
+import { GridToolbar } from "@mui/x-data-grid";
+// import EditIcon from '@mui/icons-material/Edit';
 
 function CustomToolbar() {
   return (
@@ -25,6 +25,8 @@ function Ticket() {
   const handledelete = (data) => {
     axios.delete(`http://localhost:3000/tickets/${data}`);
   };
+
+  const navigate = useNavigate();
 
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
@@ -69,6 +71,7 @@ function Ticket() {
       headerName: "nom client",
       width: 160,
       valueGetter: (value, row) => {
+        // console.log(typeof dataa.date)
         return row?.Client?.first_name + " " + row?.Client?.last_name;
         // return value.row.clients?.first_name;
       },
@@ -88,26 +91,48 @@ function Ticket() {
                 console.log(params);
               }}
             />
+            <EditIcon
+              onClick={() => {
+                navigate(`edit/${params.id}`);
+                // console.log(params);
+              }}
+            />
           </div>
         );
       },
     },
   ];
-  const [dataa, setDataa] = React.useState();
 
+  const [dataa, setDataa] = React.useState();
   const get = async () => {
     axios
       .get("http://localhost:3000/tickets")
       .then((response) => {
         setDataa(response.data);
+
+        // dataa.date.format('MMM D, YYYY')
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+
+  const [re, setre] = React.useState();
   React.useEffect(() => {
     get();
+    // setre(re+1)
   }, []);
+  React.useEffect(() => {
+    dataa?.map((i) => {
+      console.log(typeof i.date);
+      i.date = new Date(i.date);
+      console.log(i)
+      setre(...re,i)
+    });
+
+    console.log(re, "dddddddddddddddddsjsgwhgihgyj");
+  }, [dataa?.id]);
 
   return (
     <div>
