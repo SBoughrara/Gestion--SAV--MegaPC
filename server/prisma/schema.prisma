@@ -47,7 +47,7 @@ model Ticket {
   id          Int       @id @default(autoincrement())
   modele      String?
   num_serie   String?
-  date        DateTime  @default(now())
+  date        DateTime  @default(now()) @db.DateTime(2)
   garantie    garantie?
   statut      statut?
   type        String?
@@ -60,7 +60,7 @@ model Ticket {
 
 model Facture {
   id       Int      @id @default(autoincrement())
-  date     DateTime @default(now())
+  date     DateTime @default(now()) @db.Timestamp(3)
   statut   StatutP?
   montant  Float?
   Client   Client?  @relation(fields: [clientId], references: [id])
@@ -69,7 +69,7 @@ model Facture {
 
 model Rapport {
   id       Int      @id @default(autoincrement())
-  date     DateTime @default(now())
+  date     DateTime @default(now()) @db.Timestamp(3)
   contenu  String?
   Ticket   Ticket?  @relation(fields: [ticketId], references: [id])
   ticketId Int?

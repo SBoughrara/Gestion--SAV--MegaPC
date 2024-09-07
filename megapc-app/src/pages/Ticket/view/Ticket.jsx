@@ -37,6 +37,10 @@ function Ticket() {
       field: "date",
       headerName: "Date",
       width: 200,
+      valueGetter: (value, row) => {
+        let result = row.date.slice(0, 10);
+        return result ;
+      },
     },
     {
       field: "garantie",

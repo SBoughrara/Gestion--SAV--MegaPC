@@ -26,7 +26,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title>Today</Title>
+      <Title>aujourd'hui      </Title>
       <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
         <LineChart
           dataset={data}
@@ -46,7 +46,7 @@ export default function Chart() {
           ]}
           yAxis={[
             {
-              label: 'Sales ($)',
+              label: 'Vente ($)',
               labelStyle: {
                 ...theme.typography.body1,
                 fill: theme.palette.text.primary,

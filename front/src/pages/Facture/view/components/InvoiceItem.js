@@ -20,9 +20,9 @@ class InvoiceItem extends React.Component {
         <Table>
           <thead>
             <tr>
-              <th>ITEM</th>
+              <th>ARTICLE</th>
               <th>QTY</th>
-              <th>PRICE/RATE</th>
+              <th>PRIX/RATE</th>
               <th className="text-center">ACTION</th>
             </tr>
           </thead>
@@ -50,7 +50,7 @@ class ItemRow extends React.Component {
             cellData={{
             type: "text",
             name: "name",
-            placeholder: "Item name",
+            placeholder: "nom Article",
             value: this.props.item.name,
             id: this.props.item.id,
           }}/>
@@ -59,7 +59,7 @@ class ItemRow extends React.Component {
             cellData={{
             type: "text",
             name: "description",
-            placeholder: "Item description",
+            placeholder: "article description",
             value: this.props.item.description,
             id: this.props.item.id
           }}/>

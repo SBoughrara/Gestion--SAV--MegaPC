@@ -39,7 +39,7 @@ class InvoiceModal extends React.Component {
               <div className="w-100">
                 <h4 className="fw-bold my-2">{this.props.info.billFrom||'John Uberbacher'}</h4>
                 <h6 className="fw-bold text-secondary mb-1">
-                  Invoice #: {this.props.info.invoiceNumber||''}
+                  facture #: {this.props.info.invoiceNumber||''}
                 </h6>
               </div>
               <div className="text-end ms-4">
@@ -50,19 +50,19 @@ class InvoiceModal extends React.Component {
             <div className="p-4">
               <Row className="mb-4">
                 <Col md={4}>
-                  <div className="fw-bold">Billed to:</div>
+                  <div className="fw-bold">Facturé à :                  </div>
                   <div>{this.props.info.billTo||''}</div>
                   <div>{this.props.info.billToAddress||''}</div>
                   <div>{this.props.info.billToEmail||''}</div>
                 </Col>
                 <Col md={4}>
-                  <div className="fw-bold">Billed From:</div>
+                  <div className="fw-bold">Facture de :                  </div>
                   <div>{this.props.info.billFrom||''}</div>
                   <div>{this.props.info.billFromAddress||''}</div>
                   <div>{this.props.info.billFromEmail||''}</div>
                 </Col>
                 <Col md={4}>
-                  <div className="fw-bold mt-2">Date Of Issue:</div>
+                  <div className="fw-bold mt-2">Date </div>
                   <div>{this.props.info.dateOfIssue||''}</div>
                 </Col>
               </Row>
@@ -71,7 +71,7 @@ class InvoiceModal extends React.Component {
                   <tr>
                     <th>QTY</th>
                     <th>DESCRIPTION</th>
-                    <th className="text-end">PRICE</th>
+                    <th className="text-end">Prix</th>
                     <th className="text-end">AMOUNT</th>
                   </tr>
                 </thead>

@@ -170,7 +170,7 @@ class InvoiceForm extends React.Component {
                 </div>
                 <div className="d-flex flex-row align-items-center">
                   <span className="fw-bold me-2">
-                    Invoice&nbsp;Number:&nbsp;
+                    Facture&nbsp;Number:&nbsp;
                   </span>
                   <Form.Control
                     type="number"
@@ -188,9 +188,9 @@ class InvoiceForm extends React.Component {
               <hr className="my-4" />
               <Row className="mb-5">
                 <Col>
-                  <Form.Label className="fw-bold">Bill to:</Form.Label>
+                  <Form.Label className="fw-bold">Facturé à :                  :</Form.Label>
                   <Form.Control
-                    placeholder={"Who is this invoice to?"}
+                    placeholder={"De qui est cette facture a ?"}
                     rows={3}
                     value={this.state.billTo}
                     type="text"
@@ -201,7 +201,7 @@ class InvoiceForm extends React.Component {
                     required="required"
                   />
                   <Form.Control
-                    placeholder={"Email address"}
+                    placeholder={"address email "}
                     value={this.state.billToEmail}
                     type="email"
                     name="billToEmail"
@@ -211,7 +211,7 @@ class InvoiceForm extends React.Component {
                     required="required"
                   />
                   <Form.Control
-                    placeholder={"Billing address"}
+                    placeholder={" address"}
                     value={this.state.billToAddress}
                     type="text"
                     name="billToAddress"
@@ -222,9 +222,9 @@ class InvoiceForm extends React.Component {
                   />
                 </Col>
                 <Col>
-                  <Form.Label className="fw-bold">Bill from:</Form.Label>
+                  <Form.Label className="fw-bold">Facture de :                  </Form.Label>
                   <Form.Control
-                    placeholder={"Who is this invoice from?"}
+                    placeholder={"De qui est cette facture ?"}
                     rows={3}
                     value={this.state.billFrom}
                     type="text"
@@ -245,7 +245,7 @@ class InvoiceForm extends React.Component {
                     required="required"
                   />
                   <Form.Control
-                    placeholder={"Billing address"}
+                    placeholder={" address"}
                     value={this.state.billFromAddress}
                     type="text"
                     name="billFromAddress"
@@ -323,7 +323,7 @@ class InvoiceForm extends React.Component {
           <Col md={4} lg={3}>
             <div className="sticky-top pt-md-3 pt-xl-4">
               <Button variant="primary" type="submit" className="d-block w-100">
-                Review Invoice
+              Vérifier la facture
               </Button>
               <InvoiceModal
                 showModal={this.state.isOpen}
@@ -337,7 +337,7 @@ class InvoiceForm extends React.Component {
                 total={this.state.total}
               />
               <Form.Group className="mb-3">
-                <Form.Label className="fw-bold">Currency:</Form.Label>
+                <Form.Label className="fw-bold">Devise:</Form.Label>
                 <Form.Select
                   onChange={(event) =>
                     this.onCurrencyChange({ currency: event.target.value })
@@ -345,18 +345,18 @@ class InvoiceForm extends React.Component {
                   className="btn btn-light my-1"
                   aria-label="Change Currency"
                 >
-                  <option value="$">USD (United States Dollar)</option>
+                  {/* <option value="$">USD (United States Dollar)</option>
                   <option value="£">GBP (British Pound Sterling)</option>
                   <option value="¥">JPY (Japanese Yen)</option>
                   <option value="$">CAD (Canadian Dollar)</option>
-                  <option value="$">AUD (Australian Dollar)</option>
+                  <option value="$">AUD (Australian Dollar)</option> */}
                   <option value="TND">TND (Tunisian Dinar)</option>
 
-                  <option value="₿">BTC (Bitcoin)</option>
+                  {/* <option value="₿">BTC (Bitcoin)</option> */}
                 </Form.Select>
               </Form.Group>
               <Form.Group className="my-3">
-                <Form.Label className="fw-bold">Tax rate:</Form.Label>
+                <Form.Label className="fw-bold">Tax :</Form.Label>
                 <InputGroup className="my-1 flex-nowrap">
                   <Form.Control
                     name="taxRate"

@@ -92,6 +92,10 @@ function Rapport() {
       field: "date",
       headerName: "date",
       width: 160,
+      valueGetter: (value, row) => {
+        let result = row.date.slice(0, 10);
+        return result ;
+      },
     },
     {
       field: "contenu",
